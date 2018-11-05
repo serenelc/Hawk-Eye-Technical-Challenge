@@ -1,12 +1,16 @@
 public class Main {
 
-    private static double[] test = {1,2,4,3,5};
+    private static Stats test = new Stats (5);
 
     public static void main(String[] args) {
-        //System.out.println("Our test array is: " + test.toString());
-        System.out.println("The sum is: " + Stats.getSum(test));
-        System.out.println("The mean is: " + Stats.getMean(test));
-        System.out.println("The median is " + Stats.getMedian(test));
-        System.out.println("The standard deviation is " + Stats.getStandardDeviation(test));
+        test.addData(1);
+        test.addData(2);
+        test.addData(3);
+        test.addData(4);
+        test.addData(5);
+        System.out.println("The mean is: " + test.getMean());
+        System.out.println("Add 6...");
+        test.addData(6);
+        System.out.println("The new mean is: " + test.getMean());
     }
 }

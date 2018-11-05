@@ -9,18 +9,31 @@ class Stats {
     private static int num;
     private static ArrayList<Double> ds;
 
+    /* Stats constructor. Give it num to indicate how large a sample of data you want.*/
     public Stats (int num) {
         this.num = num;
         this.ds = new ArrayList(num);
     }
 
+    /* Adds a single data value to the back of the list. If the array list is full, the oldest element, which is
+     at the front of the list is removed. */
     static void addData(double d) {
-        //default adds to end of list. Want to add to front of list.
-        ds.add(0, d);
-        if (ds.size() == num) {
-            ds.remove(num - 1);
+        ds.add(d);
+        if (ds.size() > num) {
+            ds.remove(0);
         }
     }
+
+    /* Adds an array of values to the back of the list. If the array list is full, the oldest elements are
+      removed from the list. Will not add the array of values if the length of the array is larger than
+      the size of the array list specified in the constructor. */
+    static void addMultipleData(double[] ds) {
+        assert(ds.length <= num);
+        for (double d:ds) {
+            addData(d);
+        }
+    }
+
 
     static double getSum() {
         int sum = 0;
