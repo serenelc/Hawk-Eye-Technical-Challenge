@@ -4,28 +4,44 @@ import org.junit.Test;
 
 public class StatisticsTest {
 
-    private Stats sampleTwo = new Stats(6);
-    private double[] sampleData = {1,2,3,4,5};
+    private double[] sampleFiveElems = {1,2,3,4,5};
+    private double[] sampleSixElems = {2,4,6,8,9,10};
+    Stats sample;
 
     @Test
     public void testSum() {
-        Stats sampleOne = new Stats(5);
-        sampleOne.addMultipleData(sampleData);
-        Assert.assertThat(sampleOne.getSum(), CoreMatchers.is(15.0));
+        sample = new Stats(5);
+        sample.addMultipleData(sampleFiveElems);
+        Assert.assertThat(sample.getSum(), CoreMatchers.is(15.0));
     }
 
     @Test
     public void testMean() {
-
+        sample = new Stats(6);
+        sample.addMultipleData(sampleFiveElems);
+        sample.addData(6);
+        Assert.assertThat(sample.getMean(), CoreMatchers.is(3.5));
     }
 
     @Test
-    public void testMedian() {
+    public void testMedianEven() {
+        sample = new Stats(6);
+        sample.addMultipleData(sampleSixElems);
+        Assert.assertThat(sample.getMedian(), CoreMatchers.is(7.0));
+    }
 
+    @Test
+    public void testMedianOdd() {
+        sample = new Stats(7);
+        sample.addMultipleData(sampleSixElems);
+        sample.addData(1);
+        Assert.assertThat(sample.getMedian(), CoreMatchers.is(6.0));
     }
 
     @Test
     public void testStandardDeviation() {
-
+        sample = new Stats(5);
+        sample.addMultipleData(sampleFiveElems);
+        Assert.assertThat(sample.getStandardDeviation(), CoreMatchers.is(Math.sqrt(10.0)));
     }
 }
