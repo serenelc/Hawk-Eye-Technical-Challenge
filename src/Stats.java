@@ -30,10 +30,17 @@ class Stats {
       Will not add the array of values if the length of the array is larger than
       the size of the array list specified in the constructor. */
     static void addMultipleData(double[] ds) {
-        assert(ds.length <= num);
+        assert (ds.length <= num);
         for (double d:ds) {
             addData(d);
         }
+    }
+
+    /* Gets the element from the list at the given index. Checks first that the given index is within
+       the size of ds. */
+    static double getElemAtIndex(int i) {
+        assert (i < num);
+        return ds.get(i);
     }
 
     /* Sums all the elements in ds. */

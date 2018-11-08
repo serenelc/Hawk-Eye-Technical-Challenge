@@ -9,6 +9,13 @@ public class StatisticsTest {
     Stats sample;
 
     @Test
+    public void testAddingOneData() {
+        sample = new Stats(1);
+        sample.addData(4.66);
+        Assert.assertThat(sample.getElemAtIndex(0), CoreMatchers.is(4.66));
+    }
+
+    @Test
     public void testSum() {
         sample = new Stats(5);
         sample.addMultipleData(sampleFiveElems);
