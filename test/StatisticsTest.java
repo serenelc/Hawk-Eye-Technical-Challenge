@@ -19,7 +19,7 @@ public class StatisticsTest {
     public void testSum() {
         sample = new Stats(5);
         sample.addMultipleData(sampleFiveElems);
-        Assert.assertThat(sample.getSum(), CoreMatchers.is(15.0));
+        Assert.assertThat(sample.getSum(0, 4), CoreMatchers.is(15.0));
     }
 
     @Test
@@ -27,14 +27,14 @@ public class StatisticsTest {
         sample = new Stats(6);
         sample.addMultipleData(sampleFiveElems);
         sample.addData(6);
-        Assert.assertThat(sample.getMean(), CoreMatchers.is(3.5));
+        Assert.assertThat(sample.getMean(0, 5), CoreMatchers.is(3.5));
     }
 
     @Test
     public void testMedianEven() {
         sample = new Stats(6);
         sample.addMultipleData(sampleSixElems);
-        Assert.assertThat(sample.getMedian(), CoreMatchers.is(7.0));
+        Assert.assertThat(sample.getMedian(0, 5), CoreMatchers.is(7.0));
     }
 
     @Test
@@ -42,13 +42,13 @@ public class StatisticsTest {
         sample = new Stats(7);
         sample.addMultipleData(sampleSixElems);
         sample.addData(1);
-        Assert.assertThat(sample.getMedian(), CoreMatchers.is(6.0));
+        Assert.assertThat(sample.getMedian(0, 6), CoreMatchers.is(6.0));
     }
 
     @Test
     public void testStandardDeviation() {
         sample = new Stats(5);
         sample.addMultipleData(sampleFiveElems);
-        Assert.assertThat(sample.getStandardDeviation(), CoreMatchers.is(Math.sqrt(10.0)));
+        Assert.assertThat(sample.getStandardDeviation(0, 4), CoreMatchers.is(Math.sqrt(10.0)));
     }
 }

@@ -43,26 +43,31 @@ class Stats {
         return ds.get(i);
     }
 
-    /* Sums all the elements in ds. */
-    static double getSum() {
+    /* Sorts the list into ascending order then sums the elements in ds from the index start up to the index end. */
+    static double getSum(int start, int end) {
+        assert (end < num);
+        Collections.sort(ds);
         int sum = 0;
-        for (double d : ds) {
-            sum += d;
+        for (int i = start; i <= end; i++) {
+            sum += ds.get(i);
         }
         return sum;
     }
 
-    /* Gets the mean of the elements in ds. */
-    static double getMean() {
-        return getSum()/ds.size();
+    /* Sorts the list into ascending order then gets the mean of the elements from the index start
+       up to the index end. */
+    static double getMean(int start, int end) {
+        assert (end < num);
+        Collections.sort(ds);
+        return getSum(start, end)/(end - start + 1);
     }
 
-    /* Sorts the list into ascending order and then gets the median. */
-    static double getMedian() {
+    /* Sorts the list into ascending order and then gets the median of the elements from the index
+       start up to the index end. */
+    static double getMedian(int start, int end) {
+        assert (end < num);
         Collections.sort(ds);
-        System.out.println(ds);
-        int size = ds.size();
-        System.out.println("Size = " + size);
+        int size = end - start + 1;
         if (size % 2 == 0) {
             //ds has an even number of elements
             return (ds.get(size / 2) + ds.get((size / 2) - 1))/2;
@@ -73,10 +78,14 @@ class Stats {
         }
     }
 
-    static double getStandardDeviation() {
+    /* Sorts the list into ascending order and then gets the standard deviation of the elements from
+       the index start up to the index end. */
+    static double getStandardDeviation(int start, int end) {
+        assert (end < num);
+        Collections.sort(ds);
         double differenceSquared = 0;
-        double mean = getMean();
-        for (int i = 0; i < ds.size(); i++) {
+        double mean = getMean(start, end);
+        for (int i = start; i <= end; i++) {
             differenceSquared += (Math.pow((ds.get(i) - mean), 2));
         }
         return Math.sqrt(differenceSquared);
