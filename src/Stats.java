@@ -4,9 +4,8 @@ import java.util.Collections;
 
 class Stats {
 
-   // static LocalDateTime dateTime = java.time.LocalDateTime.now();
-    //DataTimePair datas = new DataTimePair (0, dateTime);
-
+    private static LocalDateTime dateTime = java.time.LocalDateTime.now();
+    private static ArrayList<DataTimePair> datas;
     private static int num;
     private static ArrayList<Double> ds;
 
@@ -15,6 +14,7 @@ class Stats {
     public Stats (int num) {
         this.num = num;
         this.ds = new ArrayList(num);
+        this.datas = new ArrayList<>(num);
     }
 
     /* Adds a single data value to the back of the ds list. If ds is full, the oldest element, which is

@@ -3,6 +3,11 @@ public class DataTimePair<D, T> {
         private final D data;
         private final T time;
 
+        public DataTimePair() {
+            this.data = null;
+            this.time = null;
+        }
+
         public DataTimePair(D data, T time) {
             this.data = data;
             this.time = time;
