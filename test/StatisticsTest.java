@@ -19,7 +19,7 @@ public class StatisticsTest {
     public void testSum() {
         sample = new Stats(5);
         sample.addMultipleData(sampleFiveElems);
-        Assert.assertThat(sample.getSum(0, 4), CoreMatchers.is(15.0));
+        Assert.assertThat(sample.getSum(1, 4), CoreMatchers.is(14.0));
     }
 
     @Test
