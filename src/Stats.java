@@ -2,9 +2,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class Stats {
+public class Stats {
 
-    private static LocalDateTime dateTime = java.time.LocalDateTime.now();
+    private static LocalDateTime dateTime;
     private static ArrayList<DataTimePair> datas;
     private static int num;
     private static ArrayList<Double> ds;
@@ -13,26 +13,35 @@ class Stats {
       ArrayList of length num. */
     public Stats (int num) {
         this.num = num;
-        this.ds = new ArrayList(num);
-        this.datas = new ArrayList<>(num);
+        this.ds = new ArrayList (num);
+
+        this.datas = new ArrayList<> (num);
     }
 
     /* Adds a single data value to the back of the ds list. If ds is full, the oldest element, which is
      at the front of the list is removed. */
-    static void addData(double d) {
-        ds.add(d);
+    static void addData (double d) {
+        ds.add (d);
         if (ds.size() > num) {
-            ds.remove(0);
+            ds.remove (0);
+        }
+
+        dateTime = java.time.LocalDateTime.now();
+        DataTimePair dtp = new DataTimePair (d, dateTime);
+        datas.add (dtp);
+        if (datas.size () > num) {
+            datas.remove (0);
         }
     }
 
     /* Adds an array of values to the back of ds. If ds is full, the oldest elements are removed from the list.
       Will not add the array of values if the length of the array is larger than
       the size of the array list specified in the constructor. */
-    static void addMultipleData(double[] ds) {
+    static void addMultipleData (double[] ds) {
         assert (ds.length <= num);
+
         for (double d:ds) {
-            addData(d);
+            addData (d);
         }
     }
 
@@ -40,7 +49,8 @@ class Stats {
        the size of ds. */
     static double getElemAtIndex(int i) {
         assert (i < num);
-        return ds.get(i);
+        //return datas.get (i);
+        return ds.get (i);
     }
 
     /* Sorts the list into ascending order then sums the elements in ds from the index start up to the index end. */
