@@ -1,37 +1,40 @@
-public class DataTimePair<D, T> {
+import java.time.LocalDateTime;
+
+public class DataTimePair<D> implements Comparable<DataTimePair> {
 
         private final D data;
-        private final T time;
+        private final java.time.LocalDateTime time;
 
-        public DataTimePair() {
-            this.data = null;
-            this.time = null;
-        }
-
-        public DataTimePair(D data, T time) {
+        public DataTimePair (D data) {
             this.data = data;
-            this.time = time;
+            this.time = java.time.LocalDateTime.now();
         }
 
-        public D getDataValue() {
+        public D getDataValue () {
             return data;
         }
 
-        public T getDateTime() {
+        public java.time.LocalDateTime getDateTime () {
             return time;
         }
 
         @Override
-        public int hashCode() {
-            return data.hashCode() + time.hashCode();
+        public int hashCode () {
+            return data.hashCode () + time.hashCode ();
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals (Object o) {
             if (!(o instanceof DataTimePair)) {
                 return false;
             }
             DataTimePair pair = (DataTimePair) o;
-            return this.data.equals(pair.getDataValue()) && this.time.equals(pair.getDateTime());
+            return this.data.equals (pair.getDataValue()) && this.time.equals (pair.getDateTime ());
+        }
+
+        @Override
+        public int compareTo(DataTimePair other) {
+            java.time.LocalDateTime t = other.getDateTime();
+            return time.compareTo(t);
         }
 }

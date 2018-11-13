@@ -27,7 +27,7 @@ public class Stats {
         }
 
         dateTime = java.time.LocalDateTime.now();
-        DataTimePair dtp = new DataTimePair (d, dateTime);
+        DataTimePair dtp = new DataTimePair (d);
         datas.add (dtp);
         if (datas.size () > num) {
             datas.remove (0);
@@ -47,19 +47,20 @@ public class Stats {
 
     /* Gets the element from the list at the given index. Checks first that the given index is within
        the size of ds. */
-    static double getElemAtIndex(int i) {
+    static double getElemAtIndex (int i) {
         assert (i < num);
         //return datas.get (i);
         return ds.get (i);
     }
 
     /* Sorts the list into ascending order then sums the elements in ds from the index start up to the index end. */
-    static double getSum(int start, int end) {
+    static double getSum (int start, int end) {
         assert (end < num);
-        Collections.sort(ds);
+        Collections.sort (ds);
+        //Collections.sort (datas);
         int sum = 0;
         for (int i = start; i <= end; i++) {
-            sum += ds.get(i);
+            sum += ds.get (i);
         }
         return sum;
     }
